@@ -28,6 +28,6 @@ Every 15 minutes, the system checks the Git Repository for new records, but this
 
 Finally, type this URL in your browser:
 
-  "http://127.0.0.1:8000/icdapi/"
+  "127.0.0.1:8000/icdapi/"
   
 You should see a Django REST Framework page with the ICD codes being displayed.
