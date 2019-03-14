@@ -40,7 +40,7 @@ class IcdcodeViewSet(viewsets.ModelViewSet):
 # Function that reads the csv file from github and update the database every 15 minutes.
 # """
 @shared_task
-@periodic_task(run_every=(crontab(minute='*/2')))
+@periodic_task(run_every=(crontab(minute='*/15')))
 def CsvView():
 	try:
 		data = "https://raw.githubusercontent.com/kamillamagna/ICD-10-CSV/master/codes.csv"
