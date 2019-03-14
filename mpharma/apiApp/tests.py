@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
 
-from apiApp.models import icdCode 
+from apiApp.models import IcdCode 
 from .serializers import CdicodeSerializer
 
 
@@ -22,13 +22,13 @@ class ModelTestCase(TestCase):
 		self.abbreviated_description='Salmonella pyelonephritis'
 		self.full_description='Shigellosis due to Shigella sonnei'
 		self.category_title='Shigellosis due to Shigella sonnei'
-		self.dxcodelist = icdCode(category_code=self.category_code,diagnosis_code=self.diagnosis_code,full_code=self.full_code,abbreviated_description=self.abbreviated_description,full_description=self.full_description,category_title=self.category_title)
+		self.dxcodelist = IcdCode(category_code=self.category_code,diagnosis_code=self.diagnosis_code,full_code=self.full_code,abbreviated_description=self.abbreviated_description,full_description=self.full_description,category_title=self.category_title)
 
 	def test_model_create_a_dxcode(self):
 		"""Test the dxcodelist model can create a dxcodelist."""
-		old_count = icdCode.objects.count()
+		old_count = IcdCode.objects.count()
 		self.dxcodelist.save()
-		new_count = icdCode.objects.count()
+		new_count = IcdCode.objects.count()
 		self.assertNotEqual(old_count, new_count)
 
 
@@ -40,7 +40,7 @@ class ModelTestCase(TestCase):
 
 def test_api_get_a_dxcode(self):
 		"""Test the api can get a given dxcodelist."""
-		dxcodelist = icdCode.objects.get()
+		dxcodelist = IcdCode.objects.get()
 		response = self.client.get(
 			reverse('details',
 			kwargs={'pk': dxcodelist.full_code}), format="json")
@@ -59,7 +59,7 @@ def test_api_update_dxcode(self):
 
 def test_api_delete_dxcode(self):
 	"""Test the api can delete a dxcodelist."""
-	dxcodelist = icdCode.objects.get()
+	dxcodelist = IcdCode.objects.get()
 	response = self.client.delete(
 		reverse('details', kwargs={'pk': dxcodelist.full_code}),
 		format='json',
